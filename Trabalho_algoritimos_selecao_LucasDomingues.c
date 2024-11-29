@@ -2,18 +2,18 @@
 #include <locale.h>
 
 // Algoritmo Bubble Sort
-void bubbleSort(int arr[], int n) {
+void bubbleSort(int vet[], int n) {
 	int i = 0, j = 0, temporaria;
     // Loop externo percorre o array do início até o penúltimo elemento
     for (i = 0; i < n - 1; i++) {
         // Loop interno percorre os elementos não ordenados
         for (j = 0; j < n - i - 1; j++) {
             // Verifica se o elemento atual é maior que o próximo
-            if (arr[j] > arr[j + 1]) {
+            if (vet[j] > vet[j + 1]) {
                 // Troca os dois elementos de lugar
-                int temporaria = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temporaria;
+                int temporaria = vet[j];
+                vet[j] = vet[j + 1];
+                vet[j + 1] = temporaria;
             }
         }
         // Após cada iteração do loop externo, o maior elemento restante está na posição correta
@@ -21,26 +21,26 @@ void bubbleSort(int arr[], int n) {
 }
 
 // Algoritmo Insertion Sort
-void insertionSort(int arr[], int n) {
+void insertionSort(int vet[], int n) {
 	int i = 0, j = 0, temporaria;
     // Começa do segundo elemento, já que o primeiro é considerado ordenado
     for ( i = 1; i < n; i++) {
-        int temporaria = arr[i]; // Armazena o elemento atual em uma variável temporária
+        int temporaria = vet[i]; // Armazena o elemento atual em uma variável temporária
         int j = i - 1;
 
-        // Move os elementos maiores que "temporaria" uma posição para frente
-        while (j >= 0 && arr[j] > temporaria) {
-            arr[j + 1] = arr[j]; // Desloca o elemento para a direita
+        // Move os elementos maiores que "key" uma posição para frente
+        while (j >= 0 && vet[j] > temporaria) {
+            vet[j + 1] = vet[j]; // Desloca o elemento para a direita
             j--;
         }
 
         // Insere "key" na posição correta encontrada
-        arr[j + 1] = temporaria;
+        vet[j + 1] = temporaria;
     }
 }
 
 // Algoritmo Selection Sort
-void selectionSort(int arr[], int n) {
+void selectionSort(int vet[], int n) {
 	int i = 0, j = 0, IndexMinimo, temporaria;
     // Loop externo percorre o array do início até o penúltimo elemento
     for (i = 0; i < n - 1; i++) {
@@ -48,22 +48,22 @@ void selectionSort(int arr[], int n) {
 
         // Loop interno encontra o índice do menor elemento no restante do array
         for (j = i + 1; j < n; j++) {
-            if (arr[j] < arr[IndexMinimo]) { // Compara o elemento atual com o menor encontrado
+            if (vet[j] < vet[IndexMinimo]) { // Compara o elemento atual com o menor encontrado
                 IndexMinimo = j; // Atualiza o índice do menor elemento
             }
         }
 
         // Troca o menor elemento encontrado com o elemento na posição atual
-        int temporaria = arr[IndexMinimo];
-        arr[IndexMinimo] = arr[i];
-        arr[i] = temporaria;
+        int temporaria = vet[IndexMinimo];
+        vet[IndexMinimo] = vet[i];
+        vet[i] = temporaria;
     }
 }
 
-void printArray(int arr[], int n) {
+void printArray(int vet[], int n) {
 	int i = 0;
     for (i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
+        printf("%d ", vet[i]);
     }
     printf("\n");
 }
@@ -75,10 +75,10 @@ int main() {
     printf("Digite o número de elementos do vetor: ");
     scanf("%d", &n);
 
-    int arr[n];
+    int vet[n];
     printf("Digite os elementos do vetor:\n");
     for (i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+        scanf("%d", &vet[i]);
     }
 
     printf("\nEscolha o método de ordenação:\n");
@@ -90,15 +90,15 @@ int main() {
 
     switch (escolha) {
         case 1:
-            bubbleSort(arr, n);
+            bubbleSort(vet, n);
             printf("Vetor ordenado usando Bubble Sort: ");
             break;
         case 2:
-            insertionSort(arr, n);
+            insertionSort(vet, n);
             printf("Vetor ordenado usando Insertion Sort: ");
             break;
         case 3:
-            selectionSort(arr, n);
+            selectionSort(vet, n);
             printf("Vetor ordenado usando Selection Sort: ");
             break;
         default:
@@ -106,6 +106,6 @@ int main() {
             return 0;
     }
 
-    printArray(arr, n);
+    printArray(vet, n);
     return 0;
 }
